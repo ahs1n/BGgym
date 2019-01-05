@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1074347262079",
+    "firebase_url": "https://bg-gym.firebaseio.com",
+    "project_id": "bg-gym",
+    "storage_bucket": "bg-gym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074347262079:android:2e47e466d3f98788",
+        "android_client_info": {
+          "package_name": "com.example.hussainsiddiqui.bggym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074347262079-rrai9t1l0difd5mk8kh8ci36ja9e6rum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hussainsiddiqui.bggym",
+            "certificate_hash": "37a6d1662f05351f30cb7f6383e77c1596666e07"
+          }
+        },
+        {
+          "client_id": "1074347262079-dcapj8fg0uq5c23abd722gt89ql0glnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0F6Z3Vx-Sfhpe25C2U2_jBg7a3rf9mSY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074347262079-dcapj8fg0uq5c23abd722gt89ql0glnm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

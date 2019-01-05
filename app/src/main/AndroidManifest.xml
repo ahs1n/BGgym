@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hussainsiddiqui.bggym">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/title_activity_first_page"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".ui.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.Registration" />
+        <activity android:name=".other.Group_List" />
+        <activity
+            android:name=".ui.Signup"
+            android:label="Signup" />
+        <activity android:name=".ui.MemberActivity" />
+        <activity android:name=".other.WorkoutsActivity" />
+        <activity android:name=".ui.StaffMembersActivity" />
+        <activity android:name=".ui.MembershipTypeActivity" />
+        <activity android:name=".other.ClassScheduleActivity"></activity>
+    </application>
+
+</manifest>
