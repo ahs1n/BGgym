@@ -1,4 +1,4 @@
-package com.example.hussainsiddiqui.bggym.other;
+package com.example.hussainsiddiqui.bggym.ui;
 
 import android.net.Uri;
 import android.os.Bundle;
