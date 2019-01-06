@@ -1,5 +1,6 @@
 package com.example.hussainsiddiqui.bggym.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,12 +9,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hussainsiddiqui.bggym.R;
+import com.example.hussainsiddiqui.bggym.contract.UserDataProvider;
 import com.example.hussainsiddiqui.bggym.db.DatabaseHelper;
 
 public class Registration extends AppCompatActivity {
     Button _submit;
     EditText _txtfname, _txtlname, _txtaddress, _txtemail, _txtphone;
     DatabaseHelper db;
+    UserDataProvider userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,14 @@ public class Registration extends AppCompatActivity {
         // Initializing DB
         db = new DatabaseHelper(this);
 
+        //get data from intent
+        userData = (UserDataProvider) getIntent().getSerializableExtra("userInfo");
+        _txtfname.setText(userData.getName());
+        _txtemail.setText(userData.getEmail());
+        _txtphone.setText(String.valueOf(userData.getCell_no()));
+
+        this.setTitle("Register " + userData.getName().toUpperCase());
+
     }
 
     public void initialize() {
@@ -39,7 +50,6 @@ public class Registration extends AppCompatActivity {
         _txtaddress = findViewById(R.id.addr);
         _txtemail = findViewById(R.id.email);
         _txtphone = findViewById(R.id.cellno);
-
     }
 
     public void setListeners() {
@@ -53,8 +63,15 @@ public class Registration extends AppCompatActivity {
                 String email = _txtemail.getText().toString();
                 String phone = _txtphone.getText().toString();
 
-                Long id = db.insertdata(fname, lname, add, email, Long.parseLong(phone));
-                Toast.makeText(getApplicationContext(), "register successfully", Toast.LENGTH_LONG).show();
+                if (db.updateUserInfo(userData.getId(), fname)) {
+                    Long id = db.insertdata(fname, lname, add, email, Long.parseLong(phone));
+                    if (id != 0) {
+                        Toast.makeText(getApplicationContext(), "Register successfully", Toast.LENGTH_LONG).show();
+
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), MemberActivity.class));
+                    }
+                }
 
             }
         });

@@ -1,15 +1,14 @@
 package com.example.hussainsiddiqui.bggym.contract;
 
-public class UserDataProvider {
+import java.io.Serializable;
+
+public class UserDataProvider implements Serializable {
     private String name;
-    private String mobile;
+    private Long cell_no;
     private String email;
     private int id;
 
-    public UserDataProvider(String name, String mobile, String email) {
-        this.name = name;
-        this.mobile = mobile;
-        this.email = email;
+    public UserDataProvider() {
     }
 
     public String getName() {
@@ -20,12 +19,12 @@ public class UserDataProvider {
         this.name = name;
     }
 
-    public String getMobile() {
-        return mobile;
+    public Long getCell_no() {
+        return cell_no;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setCell_no(Long cell_no) {
+        this.cell_no = cell_no;
     }
 
     public String getEmail() {

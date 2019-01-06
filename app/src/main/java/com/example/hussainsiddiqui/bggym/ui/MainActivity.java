@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.hussainsiddiqui.bggym.R;
-import com.example.hussainsiddiqui.bggym.other.CustomListview;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_group:
-                startActivity(new Intent(this, CustomListview.class));
+                startActivity(new Intent(this, GroupListActivity.class));
                 break;
 
             case R.id.nav_member:
