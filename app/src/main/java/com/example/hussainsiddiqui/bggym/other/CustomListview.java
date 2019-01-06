@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hussainsiddiqui.bggym.R;
+
 public class CustomListview extends ArrayAdapter<String> {
 
     private Integer[] IMAGES;
@@ -16,7 +18,7 @@ public class CustomListview extends ArrayAdapter<String> {
     private Activity context;
 
     public CustomListview(Activity context, String[] NAMES, String[] DESCRIPTION, Integer[] IMAGES) {
-        super(context, com.example.hussainsiddiqui.bggym.R.layout.customlayout, NAMES);
+        super(context, R.layout.customlayout, NAMES);
 
         this.context = context;
         this.NAMES = NAMES;
@@ -30,7 +32,7 @@ public class CustomListview extends ArrayAdapter<String> {
         if (r == null) {
 
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r = layoutInflater.inflate(com.example.hussainsiddiqui.bggym.R.layout.customlayout, null, true);
+            r = layoutInflater.inflate(R.layout.customlayout, null, true);
             viewHolder = new ViewHolder(r);
             r.setTag(viewHolder);
         } else {
@@ -41,8 +43,7 @@ public class CustomListview extends ArrayAdapter<String> {
         viewHolder.tvw1.setText(NAMES[position]);
         viewHolder.tvw1.setText(DESCRIPTION[position]);
 
-
-        return super.getView(position, convertView, parent);
+        return r;
     }
 
     class ViewHolder {
@@ -51,9 +52,9 @@ public class CustomListview extends ArrayAdapter<String> {
         ImageView ivw;
 
         ViewHolder(View v) {
-            tvw1 = v.findViewById(com.example.hussainsiddiqui.bggym.R.id.textView_name);
-            tvw1 = v.findViewById(com.example.hussainsiddiqui.bggym.R.id.textView_description);
-            ivw = v.findViewById(com.example.hussainsiddiqui.bggym.R.id.imageView);
+            tvw1 = v.findViewById(R.id.textView_name);
+            tvw2 = v.findViewById(R.id.textView_email);
+            ivw = v.findViewById(R.id.imageView);
         }
     }
 }

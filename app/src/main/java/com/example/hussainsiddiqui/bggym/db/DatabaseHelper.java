@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.hussainsiddiqui.bggym.contract.UserDataProvider;
+
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "register.db";
 
@@ -18,12 +22,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE " + SIGNUP.TABLE_NAME + "(" +
                         SIGNUP.Id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        SIGNUP.Full_Name + " TEXT," +
+                        SIGNUP.Name + " TEXT," +
                         SIGNUP.Email + " TEXT," +
                         SIGNUP.Cell_No + " LONG," +
                         SIGNUP.Password + " TEXT," +
                         SIGNUP.Retype_Pass + " TEXT," +
-                        SIGNUP.COL_7 + " BOOLEAN )"
+                        SIGNUP.COL_FLAG + " BOOLEAN )"
         );
 
         db.execSQL(
@@ -33,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         REGISTER.Last_Name + " TEXT," +
                         REGISTER.Address + " TEXT," +
                         REGISTER.Email + " TEXT," +
-                        REGISTER.Cell_No + " INTEGER," +
+                        REGISTER.Cell_No + " LONG," +
                         REGISTER.COL_7 + " BOOLEAN )"
         );
     }
@@ -49,12 +53,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertdata(String fname, String email, long phone, String pass, String rpass) {
         SQLiteDatabase signdb = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SIGNUP.Full_Name, fname);
+        contentValues.put(SIGNUP.Name, fname);
         contentValues.put(SIGNUP.Email, email);
         contentValues.put(SIGNUP.Cell_No, phone);
         contentValues.put(SIGNUP.Password, pass);
         contentValues.put(SIGNUP.Retype_Pass, rpass);
-        contentValues.put(SIGNUP.COL_7, false);
+        contentValues.put(SIGNUP.COL_FLAG, false);
         long id = signdb.insert(SIGNUP.TABLE_NAME, null, contentValues);
 
         return id;
@@ -69,7 +73,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(REGISTER.Address, add);
         contentValues.put(REGISTER.Email, email);
         contentValues.put(REGISTER.Cell_No, phone);
-        contentValues.put(REGISTER.COL_7, false);
         long id = regdb.insert(DatabaseHelper.REGISTER.TABLE_NAME, null, contentValues);
 
         return id;
@@ -91,6 +94,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res.getCount() > 0;
     }
 
+    public boolean updateUserInfo(int id, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SIGNUP.Name, name);
+        values.put(SIGNUP.COL_FLAG, true);
+
+// Which row to update, based on the ID
+        String selection = SIGNUP.Id + " =?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        int count = db.update(SIGNUP.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count > 0;
+
+    }
+
     /*Use for show reg member data*/
     public Cursor getData() {
 
@@ -99,15 +122,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /*Get All newly signup members*/
+    public ArrayList<UserDataProvider> GetNewlyMembers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                SIGNUP.Id,
+                SIGNUP.Name,
+                SIGNUP.Email,
+                SIGNUP.Cell_No,
+                SIGNUP.COL_FLAG
+        };
+        String whereClause = SIGNUP.COL_FLAG + " =? ";
+        String[] whereArgs = {"0"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = SIGNUP.Id + " ASC";
+
+        ArrayList<UserDataProvider> allFC = new ArrayList<>();
+        try {
+            c = db.query(
+                    SIGNUP.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                UserDataProvider fc = new UserDataProvider();
+                fc.setId(c.getInt(c.getColumnIndex(SIGNUP.Id)));
+                fc.setName(c.getString(c.getColumnIndex(SIGNUP.Name)));
+                fc.setEmail(c.getString(c.getColumnIndex(SIGNUP.Email)));
+                fc.setCell_no(c.getLong(c.getColumnIndex(SIGNUP.Cell_No)));
+                allFC.add(fc);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
     public interface SIGNUP {
         String TABLE_NAME = "signup";
         String Id = "ID";
-        String Full_Name = "FullName";
+        String Name = "FullName";
         String Email = "Email";
         String Cell_No = "Phone";
         String Password = "Password";
         String Retype_Pass = "RetypePassword";
-        String COL_7 = "Flag";
+        String COL_FLAG = "Flag";
     }
 
     public interface REGISTER {
@@ -120,7 +191,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String Cell_No = "Phone";
         String COL_7 = "Flag";
     }
-
-    /*Get All newly signup members*/
 
 }

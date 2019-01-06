@@ -59,6 +59,13 @@ public class Signup extends AppCompatActivity {
                     return;
                 }
 
+                if (!pass.equals(rpass)) {
+                    _txtrpass.setError("Password incorrect!!");
+                    return;
+                }
+
+                _txtrpass.setError(null);
+
                 Long id = db.insertdata(fname, email, Long.parseLong(phone), pass, rpass);
                 if (id > 0) {
                     Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_LONG).show();
