@@ -21,15 +21,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Registration" />
-        <activity android:name=".other.Group_List" />
+        <activity android:name=".ui.GroupListActivity" />
         <activity
             android:name=".ui.Signup"
             android:label="Signup" />
         <activity android:name=".ui.MemberActivity" />
-        <activity android:name=".other.WorkoutsActivity" />
-        <activity android:name=".ui.StaffMembersActivity" />
+        <activity android:name=".ui.WorkoutsActivity" />
         <activity android:name=".ui.MembershipTypeActivity" />
-        <activity android:name=".other.ClassScheduleActivity"></activity>
+        <activity android:name=".ui.ClassScheduleActivity" />
+        <activity android:name=".ui.StaffMembersActivity"></activity>
     </application>
 
 </manifest>
