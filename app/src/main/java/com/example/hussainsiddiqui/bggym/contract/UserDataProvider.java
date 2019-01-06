@@ -1,12 +1,12 @@
 package com.example.hussainsiddiqui.bggym.contract;
 
-public class DataProvider {
+public class UserDataProvider {
     private String name;
     private String mobile;
     private String email;
     private int id;
 
-    public DataProvider(String name, String mobile, String email) {
+    public UserDataProvider(String name, String mobile, String email) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;

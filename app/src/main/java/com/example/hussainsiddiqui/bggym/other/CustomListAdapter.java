@@ -9,10 +9,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAdapter extends ArrayAdapter {
+public class CustomListAdapter extends ArrayAdapter {
     List list = new ArrayList();
 
-    public ListAdapter(Context context, int resource) {
+    public CustomListAdapter(Context context, int resource) {
         super(context, resource);
     }
 

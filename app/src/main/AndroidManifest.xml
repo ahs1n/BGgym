@@ -28,8 +28,12 @@
         <activity android:name=".ui.MemberActivity" />
         <activity android:name=".ui.WorkoutsActivity" />
         <activity android:name=".ui.MembershipTypeActivity" />
-        <activity android:name=".ui.ClassScheduleActivity" />
-        <activity android:name=".ui.StaffMembersActivity"></activity>
+        <activity
+            android:name=".ui.ClassScheduleActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.StaffMembersActivity"
+            android:label="Staff Members"></activity>
     </application>
 
 </manifest>

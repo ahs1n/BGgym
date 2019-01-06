@@ -8,8 +8,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.hussainsiddiqui.bggym.R;
-import com.example.hussainsiddiqui.bggym.contract.DataProvider;
+import com.example.hussainsiddiqui.bggym.contract.UserDataProvider;
 import com.example.hussainsiddiqui.bggym.db.DatabaseHelper;
+import com.example.hussainsiddiqui.bggym.other.CustomListAdapter;
 
 public class MemberActivity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
@@ -26,7 +27,7 @@ public class MemberActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(getApplicationContext());
         sqLiteDatabase = databaseHelper.getReadableDatabase();
         cursor = databaseHelper.getData();
-        listAdapter = new com.example.hussainsiddiqui.bggym.other.ListAdapter(getApplicationContext(), R.layout.row_layout);
+        listAdapter = new CustomListAdapter(getApplicationContext(), R.layout.row_layout);
         listView.setAdapter(listAdapter);
 
         if (cursor.moveToFirst()) {
@@ -36,7 +37,7 @@ public class MemberActivity extends AppCompatActivity {
                 name = cursor.getString(0);
                 email = cursor.getString(1);
                 cell = cursor.getString(2);
-                DataProvider dataProvider = new DataProvider(name, email, cell);
+                UserDataProvider dataProvider = new UserDataProvider(name, email, cell);
                 listAdapter.equals(dataProvider);
 
             }
