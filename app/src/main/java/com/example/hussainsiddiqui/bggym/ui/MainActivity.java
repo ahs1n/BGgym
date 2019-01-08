@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("BG Gym");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -95,9 +96,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(this, StaffMembersActivity.class));
                 break;
 
-            case R.id.nav_reg:
-                startActivity(new Intent(this, Registration.class));
-                break;
+//           Rcase Rcase R.id.nav_reg:
+//                startActivity(new Intent(this, Registration.class));
+//                break;
 
             case R.id.nav_memb_type:
                 startActivity(new Intent(this, MembershipTypeActivity.class));

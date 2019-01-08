@@ -15,12 +15,14 @@ public class GroupListActivity extends AppCompatActivity {
 
     String[] NAMES = {"Body Building", "Fitness", "General Training", "Weight Gain", "Thaiboxing", "Weight Loss"};
 
-    String[] DESCRIPTION = {"Display 1", "Display 2", "Display 3", "Display 4", "Display 5", "Display 6"};
+    String[] DESCRIPTION = {"Prepare for competitions", "Physical fitness", "Non-academic purposes", "Increase in body weight", "Art of Eight Limbs", "Diet, exercise"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_list);
+
+        this.setTitle("Group List");
 
         ListView listView = findViewById(R.id.ListView);
 

@@ -41,7 +41,7 @@ public class CustomListview extends ArrayAdapter<String> {
         viewHolder.ivw.setImageResource(IMAGES[position]);
 
         viewHolder.tvw1.setText(NAMES[position]);
-        viewHolder.tvw1.setText(DESCRIPTION[position]);
+        viewHolder.tvw2.setText(DESCRIPTION[position]);
 
         return r;
     }

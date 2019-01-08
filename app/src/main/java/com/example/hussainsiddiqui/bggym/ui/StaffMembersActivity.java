@@ -11,5 +11,7 @@ public class StaffMembersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_members);
+
+        this.setTitle("Staff Members");
     }
 }
